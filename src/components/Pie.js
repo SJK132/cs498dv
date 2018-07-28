@@ -26,14 +26,14 @@ function Label({ x, y, children }) {
 }
 
 export default ({
-  width=400,
+  width=675,
   height=400,
   events = false,
   margin = {
-    top: 30,
+    top: 40,
     left: 20,
     right: 20,
-    bottom: 110,
+    bottom: 40,
   }
 }) => {
   if (width < 10) return null;

@@ -118,19 +118,19 @@ class App extends Component {
                                             </div>
                                         </div>
                                     </div>
-
                                     <div className="col-12 col-lg-6">
-                                        <div className="widget full-width">
+                                        <div className="widget widget-tile">
                                             <div className="widget-head">
                                                 <div className="title">Put Chart2 Name Here</div>
                                             </div>
                                             <div className="widget-chart-container">
-                                                <Threshold height={400} width={600} margin={{'top':20,'bottom':50,'left':50,'right':10}}/>
+                                                <Threshold height={400} width={675} margin={{'top':20,'bottom':50,'left':50,'right':10}}/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     );
                 }
