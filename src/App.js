@@ -24,7 +24,8 @@ class App extends Component {
                 }
                 return res.json();
             })
-            .then(res => this.processGPA(res,'semester',0))
+            .then(res => this.processGPA(res,'prof',0))
+            .then(res => console.log(res))
             .catch(err => console.log(err));
     }
 
@@ -43,7 +44,6 @@ class App extends Component {
         out['dminus'] += B['dminus'];
         out['dplus'] += B['dplus'];
         out['f'] += B['f'];
-        console.log(out);
 
         return out;
     }
@@ -53,36 +53,54 @@ class App extends Component {
         if (type === 'semester'){
             output = input.reduce( ( out, i ) => {
                 var term = out.filter( yt => yt.yearterm == i.yearterm );
-                if (term.length === 0) {
-                    out.push(i);
-                }
-                else{
-                    out = out.filter( yt => yt.yearterm !== i.yearterm );
-                    var data = term[0];
-                    out.push(this.appendTerm(data,i));
+
+                if (true || i.instructor === "Angrave, Lawrence C"){
+                    if (term.length === 0) {
+                        out.push(i);
+                    }
+                    else{
+                        out = out.filter( yt => yt.yearterm !== i.yearterm );
+                        var data = term[0];
+                        out.push(this.appendTerm(data,i));
+                    }
                 }
                 return out;
             }, []);
+
         }else if (type === 'prof'){
+            output = input.reduce( (out, i ) => {
+                var prof = out.filter( yt => yt.instructor == i.instructor );
+
+                if (true){
+                    if (prof.length === 0) {
+                        out.push(i);
+                    }
+                    else{
+                        out = out.filter( yt => yt.instructor !== i.instructor );
+                        var data = prof[0];
+                        out.push(this.appendTerm(data,i));
+                    }
+                }
+                return out;
+            }, []);
         }
-        console.log(output);
         return output;
     }
 
-    render() {
-        return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-                <Pie />
-            </div>
-        );
-    }
-}
+                render() {
+                    return (
+                        <div className="App">
+                            <header className="App-header">
+                                <img src={logo} className="App-logo" alt="logo" />
+                                <h1 className="App-title">Welcome to React</h1>
+                            </header>
+                            <p className="App-intro">
+                                To get started, edit <code>src/App.js</code> and save to reload.
+                            </p>
+                            <Pie />
+                        </div>
+                    );
+                }
+        }
 
-export default App;
+            export default App;
