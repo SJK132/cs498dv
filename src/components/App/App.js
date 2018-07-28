@@ -90,18 +90,50 @@ class App extends Component {
 
                 render() {
                     return (
-                        <div className="App">
-                            <header className="App-header">
-                                <h1 className="App-title">Welcome to React</h1>
-                            </header>
-                            <p className="App-intro">
-                                To get started, edit <code>src/App.js</code> and save to reload.
-                            </p>
-                            <Pie />
-                            <Threshold height={400} width={600} margin={{'top':20,'bottom':50,'left':50,'right':10}}/>
+                        <div className="main-content container-fluid">
+                            <div className="App">
+                                <header className="App-header">
+                                    <h1 className="App-title">Course Statistics Visualization</h1>
+                                </header>
+                                <div className="form-group pt-2">
+                                    <label htmlFor="inputSearch">Enter a course number: </label>
+                                    <div className="input-group input-search">
+                                        <input id="inputSearch" type="text"
+                                               placeholder="Please enter a course to start searching <3"
+                                               className="form-control"/>
+                                        <span className="input-group-btn"></span>
+                                    </div>
+                                </div>
+                                <p className="App-intro">
+                                    To get started, edit <code>src/App.js</code> and save to reload.
+                                </p>
+                                <div className="row">
+                                    <div className="col-12 col-lg-6">
+                                        <div className="widget widget-tile">
+                                            <div className="widget-head">
+                                                <div className="title">Put Chart1 Name Here</div>
+                                            </div>
+                                            <div className="widget-chart-container">
+                                                <Pie />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="col-12 col-lg-6">
+                                        <div className="widget full-width">
+                                            <div className="widget-head">
+                                                <div className="title">Put Chart2 Name Here</div>
+                                            </div>
+                                            <div className="widget-chart-container">
+                                                <Threshold height={400} width={600} margin={{'top':20,'bottom':50,'left':50,'right':10}}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     );
                 }
         }
 
-            export default App;
+        export default App;
