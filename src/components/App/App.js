@@ -5,8 +5,12 @@ import Pie from '../Pie';
 import Threshold from '../Threshold';
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {'data':[]};
+    }
     componentDidMount(){
-        var course = ['CS',241];
+        var course = ['CS',199];
         fetch('https://0-web-api.course-ly.com/api/'+'getGPA',{
             method: 'POST',
             headers:{
@@ -25,8 +29,8 @@ class App extends Component {
                 }
                 return res.json();
             })
-            .then(res => this.processGPA(res,'prof',0))
-            .then(res => console.log(res))
+            .then(res => this.processGPA(res,'semester',0))
+            .then(res => this.setState({'data':res}))
             .catch(err => console.log(err));
     }
 
@@ -88,20 +92,20 @@ class App extends Component {
         return output;
     }
 
-                render() {
-                    return (
-                        <div className="App">
-                            <header className="App-header">
-                                <h1 className="App-title">Welcome to React</h1>
-                            </header>
-                            <p className="App-intro">
-                                To get started, edit <code>src/App.js</code> and save to reload.
-                            </p>
-                            <Pie />
-                            <Threshold height={400} width={600} margin={{'top':20,'bottom':50,'left':50,'right':10}}/>
-                        </div>
-                    );
-                }
-        }
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <h1 className="App-title">Welcome to React</h1>
+                </header>
+                <p className="App-intro">
+                    To get started, edit <code>src/App.js</code> and save to reload.
+                </p>
+                <Pie />
+                <Threshold height={400} width={1000} data={this.state.data} margin={{'top':20,'bottom':50,'left':50,'right':10}}/>
+            </div>
+        );
+    }
+}
 
-            export default App;
+export default App;
