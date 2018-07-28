@@ -21,6 +21,7 @@ export default class Thresholds extends React.Component {
     const { width, height, margin, events } = this.props;
     if (width < 10) return null;
 
+    console.log(this.props);
     // bounds
     const xMax = width - margin.left - margin.right;
     const yMax = height - margin.top - margin.bottom;
