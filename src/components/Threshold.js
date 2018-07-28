@@ -8,25 +8,43 @@ import { AxisLeft, AxisBottom } from '@vx/axis';
 import { GridRows, GridColumns } from '@vx/grid';
 import { cityTemperature as data1 } from '@vx/mock-data';
 import { timeFormat, timeParse } from 'd3-time-format';
-import { transformYearTerm , sortYearTerm } from './lib';
+import { transformYearTerm , sortYearTerm , calcGPA } from './lib';
 
 const parseDate = timeParse('%Y%m');
-console.log(transformYearTerm);
 
-var data = data1;
 // accessors
-const ny = d => d['a'];
-const sf = d => d['b'];
+const ny = d => {
+    return calcGPA(d);
+}
+const sf = d => {
+    if ( 'new' in d){
+        var out = calcGPA(d.new);
+        return out;
+    }else
+    return calcGPA(d);
+}
 
 export default class Thresholds extends React.Component {
     render() {
         const { width, height, margin, events } = this.props;
-        if (width < 10) return null;
-        data = this.props.data.sort( sortYearTerm );
+        var data = this.props.data.sort( sortYearTerm );
+        var data1 = this.props.data1;
+        console.log(data1);
+        var data2 = data1.map(d => {
+            return d.yearterm;
+        });
+        data = data.map( d => {
+            if (data2.includes(d.yearterm)){
+                d['new'] = data1[data2.indexOf(d.yearterm)];
+                return d;
+            }
+            return d;
+        });
+        console.log(data);
         const date = d => {
-
             return parseDate(transformYearTerm(d.yearterm));
         };
+        if (width < 10 ) return null;
 
         // bounds
         const xMax = width - margin.left - margin.right;
@@ -68,12 +86,13 @@ export default class Thresholds extends React.Component {
                             yScale={yScale}
                             clipAboveTo={0}
                             clipBelowTo={yMax}
+                            curve={curveBasis}
                             belowAreaProps={{
-                                fill: 'red',
+                                fill: 'green',
                                 fillOpacity: 0.4
                             }}
                             aboveAreaProps={{
-                                fill: 'green',
+                                fill: 'red',
                                 fillOpacity: 0.4
                             }}
                         />
@@ -85,6 +104,7 @@ export default class Thresholds extends React.Component {
                             yScale={yScale}
                             stroke="#000"
                             strokeWidth={1.5}
+                            curve={curveBasis}
                             strokeOpacity={0.8}
                             strokeDasharray="1,2"
                         />
@@ -93,6 +113,7 @@ export default class Thresholds extends React.Component {
                             x={date}
                             y={ny}
                             xScale={xScale}
+                            curve={curveBasis}
                             yScale={yScale}
                             stroke="#000"
                             strokeWidth={1.5}
