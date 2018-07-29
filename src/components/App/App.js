@@ -69,29 +69,37 @@ class App extends Component {
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">
-                                    <Pie />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-12 col-lg-6">
-                            <div className="widget widget-tile">
-                                <div className="widget-head">
-                                    <div className="row">
-                                        <div className="title" style={{textAlign: 'left'}}>Put Chart2 Name Here</div>
-                                        <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
+                                    <Pie
+                                        width={600}
+                                        height={400}
+                                        margin = {{
+                                            top: 10,
+                                            left: 20,
+                                            right: 20,
+                                            bottom: 10,
+                                        }} />
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="widget-chart-container">
-                                    <Threshold height={400} width={600} data={data} data1={data1} margin={{'top':25,'bottom':40,'left':40,'right':15}}/>
+                                <div className="col-12 col-lg-6">
+                                    <div className="widget widget-tile">
+                                        <div className="widget-head">
+                                            <div className="row">
+                                                <div className="title" style={{textAlign: 'left'}}>Put Chart2 Name Here</div>
+                                                <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
+                                            </div>
+                                        </div>
+                                        <div className="widget-chart-container">
+                                            <Threshold height={400} width={600} data={data} data1={data1} margin={{'top':25,'bottom':40,'left':40,'right':15}}/>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
+                );
+            }
+            }
 
-            </div>
-        );
-    }
-}
-
-export default App;
+            export default App;
