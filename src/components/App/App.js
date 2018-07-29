@@ -9,7 +9,7 @@ import { processGPA } from '../lib';
 class App extends Component {
     constructor(props){
         super(props);
-        this.state = {'data':[]};
+        this.state = {'data':[], query: ""};
     }
     componentDidMount(){
         var course = ['MATH',241];
@@ -37,7 +37,9 @@ class App extends Component {
 
     search(e){
         if(e.key == 'Enter'){
-            console.log("shabi DouM")
+            this.setState({
+                query: document.getElementById('inputSearch').value
+            });
         }
     }
 
@@ -64,7 +66,7 @@ class App extends Component {
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="row">
-                                        <div className="title" style={{textAlign: 'left', marginRight: 'auto'}}>Put Chart1 Name Here</div>
+                                        <div className="title" style={{textAlign: 'left', marginRight: 'auto', paddingLeft:'20px'}}>Put Chart1 Name Here</div>
                                         <MultiSelectSimple list={data.map(d=>d.instructor)}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
                                     </div>
                                 </div>
@@ -77,8 +79,8 @@ class App extends Component {
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="row">
-                                        <div className="title" style={{textAlign: 'left'}}>Put Chart2 Name Here</div>
-                                        <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
+                                        <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>Put Chart2 Name Here</div>
+                                        <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'20px',paddingTop:'5px'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">
