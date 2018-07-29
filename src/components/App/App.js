@@ -10,13 +10,17 @@ class App extends Component {
     constructor(props){
         super(props);
         this.search = this.search.bind(this);
-        this.state = {'data':[], query: ""};
+        this.state = {'data':[], query: "", prompt: "Enter a course number: "};
     }
 
     search(e){
         if(e.key == 'Enter'){
             var query = document.getElementById('inputSearch').value;
             var course = query.match(/([A-Za-z]+)([0-9]+)/);
+            if(course == null){
+                this.setState({'prompt': "No results found, Please make sure you entered a correct course and try again!"});
+                return;
+            }
             fetch('https://0-web-api.course-ly.com/api/'+'getGPA',{
                 method: 'POST',
                 headers:{
@@ -35,7 +39,10 @@ class App extends Component {
                     }
                     return res.json();
                 })
-                .then(res => this.setState({'data':res}))
+                .then(res => {
+                    this.setState({'data':res})
+                    this.setState({'prompt': "Successfully fetched data. The results are shown in the Charts below."});
+                })
                 .catch(err => console.log(err));
         }
     }
@@ -50,7 +57,7 @@ class App extends Component {
                         <h1 className="App-title">Course Statistics Visualization</h1>
                     </header>
                     <div className="form-group pt-2">
-                        <label htmlFor="inputSearch">Enter a course number: </label>
+                        <label htmlFor="inputSearch">{this.state.prompt}</label>
                         <div className="input-group input-search">
                             <input id="inputSearch" type="text"
                                 placeholder="Please enter a course to start searching <3"
