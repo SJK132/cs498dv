@@ -12,7 +12,7 @@ class App extends Component {
         super(props);
         this.search = this.search.bind(this);
         this.changedMulti = this.changedMulti.bind(this);
-        this.state = {'data':[], d:[],d1:[],d2:[],d3:[],prompt: "Enter a course number: "};
+        this.state = {'data':[], d:[],d1:[],d2:[],d3:[],prompt: "Enter a course number and hit Enter on the keyboard: "};
     }
     changedMulti(e){
         var d1 = processGPA(this.state.data,'semester', e);
@@ -36,7 +36,6 @@ class App extends Component {
 
         data3 = data3.slice(0, Math.min(5,data3.length));
         data3.push({instructor:'etc..',b:data3[0].b/8});
-        console.log(data3);
 
         var reduceGPA = d1.reduce( (out, i) =>{
             out[0].v += i.a;
@@ -63,10 +62,6 @@ class App extends Component {
         if(e.key == 'Enter'){
             var query = document.getElementById('inputSearch').value;
             var course = query.match(/([A-Za-z]+)([0-9]+)/);
-            if(course == null){
-                this.setState({'prompt': "No results found, Please make sure you entered a correct course and try again!"});
-                return;
-            }
             fetch('https://0-web-api.course-ly.com/api/'+'getGPA',{
                 method: 'POST',
                 headers:{
@@ -84,6 +79,13 @@ class App extends Component {
                         throw new TypeError("failed to get data.");
                     }
                     return res.json();
+                })
+                .then(res => {
+                    if (res.length === 0) {
+                        this.setState({'prompt': "Failed to get data, input correct course and try again. (eg. MATH241)"});
+                        throw TypeError('failed to get data');
+                    }
+                    return res;
                 })
                 .then(res => {
                     this.setState({'data':res})
@@ -153,7 +155,7 @@ class App extends Component {
                                 <div className='tab-pane active'>
                                     <h3>About this Visualization</h3>
                                     <p> This data Visualization uses <strong>Drill Down </strong>approach to display the difference in GPA at UIUC between professors
-                                        across the most recent seven semesters (Fall 2014 ~ Fall 2017). Since each class have many information to display,
+                                        across the most recent seven semesters (Fall 2010 ~ Fall 2017). Since each class have many information to display,
                                         the best way to lead the reader in this case is Drill Down. The Drill-Down Story visualization structure allows users
                                         to choose a detail instance among all instances provided in the main theme to reveal additional information.
                                         This approach is more reader-driven comparing to the other two structure, Martini Glass and Interactive Slide-show,
@@ -164,42 +166,52 @@ class App extends Component {
                                         in the pie chart which shows a default professor's statistics. Among all the professors who taught that course in the past,
                                         users can further switch the dropdown button in order to check different professor's statistics,
                                         which leads to another trigger on the line chart.
-                                        </p>
-                                    <p>
-                                    <h4>Data Source</h4>
-                                        <a href="https://github.com/wadefagen/datasets/tree/master/gpa">https://github.com/wadefagen/datasets/tree/master/gpa</a>
                                     </p>
+                                    <p> Some of the more interesting class to look at are MATH221,231,241,415 ECON102,103. As those classes typically have more than 1 professor
+                                        teaching each semester. It is easier to see who is got the better gpa. I choose this project to visualize because I was looking up data about professor's gpa
+                                        for my Chem232 Summer class. After some research I decided to drop that class. You may use this tool to see which professor I had. It is a dead give away.
+                                    </p>
+
+                                        <p>
+                                            <h5>Data Source</h5>
+                                            <a href="https://github.com/wadefagen/datasets/tree/master/gpa">https://github.com/wadefagen/datasets/tree/master/gpa</a>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
                             <div className="col-12 col-lg-6">
-                            <div className="row tab-content" style={{marginLeft:'auto'}}>
-                                <div className='tab-pane active'>
-                                    <h4>Scences</h4>
-                                    <p> asdf</p>
-                                    <h4>Annotations</h4>
-                                    <p>daef</p>
+                                <div className="row tab-content" style={{marginLeft:'auto'}}>
+                                    <div className='tab-pane active'>
+                                        <h4>Scences</h4>
+                                        <p> Only have one scence, so the user won't get lost. The scence contains two charts and one search bar. The Chart can provided detiled information based user's query.</p>
+                                        <h4>Annotations</h4>
+                                        <p> On the right side the professor's taught semester will be displayed. On the left side there is the most Popular professor on Pie chart.
+                                        The average course gpa is always display in bold line, and the individual prof. will have dashed line that come off the main line to see the difference.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
                             <div className="col-12 col-lg-6">
-                            <div className="row tab-content" style={{marginRight:'auto'}}>
-                                <div className='tab-pane active'>
-                                    <h4>Parameters</h4>
-                                    <p> asdf</p>
-                                    <h4>Trigger</h4>
-                                    <p>sdaw</p>
+                                <div className="row tab-content" style={{marginRight:'auto'}}>
+                                    <div className='tab-pane active'>
+                                        <h4>Parameters</h4>
+                                        <p> The main parameter is the average GPA on the right side. This professor's gpa will be highlighted with green and red color to indicate differences.
+                                         There are also break downs for each section.</p>
+                                        <h4>Trigger</h4>
+                                        <p>The more interesting part of this project. The Search bar and dropdown are the two most important part of the input for the trigger. The two chart are used to diaplay
+                                        the result based on the input. Behind the scence actions are sorting, filtering, reducing. Combining these step will yield the final output.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
 
-            </div>
+            );
+        }
+        }
 
-        );
-    }
-}
-
-export default App;
+        export default App;
