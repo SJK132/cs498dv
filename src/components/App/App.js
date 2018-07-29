@@ -148,10 +148,38 @@ class App extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div className="col-12 col-lg-12">
+                                    <div className="widget widget-tile">
+                                        <div className="widget-head">
+                                            <div className="row">
+                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>Siezless</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-lg-6">
+                                    <div className="widget widget-tile">
+                                        <div className="widget-head">
+                                            <div className="row">
+                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>ShaBi</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-12 col-lg-6">
+                                    <div className="widget widget-tile">
+                                        <div className="widget-head">
+                                            <div className="row">
+                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>DouM</div>                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    </div>
+                            </div>
+
+                        </div>
+            
                 );
             }
             }
