@@ -175,6 +175,9 @@ class App extends Component {
                                         <p>
                                             <h5>Data Source</h5>
                                             <a href="https://github.com/wadefagen/datasets/tree/master/gpa">https://github.com/wadefagen/datasets/tree/master/gpa</a>
+                                            <h5>Source Code</h5>
+                                            <a href='https://github.com/SJK132/cs498dv/tree/master'> this </a>
+
                                         </p>
                                     </div>
                                 </div>
