@@ -9,7 +9,7 @@ import { processGPA } from '../lib';
 class App extends Component {
     constructor(props){
         super(props);
-        this.state = {'data':[]};
+        this.state = {'data':[], query: ""};
     }
     componentDidMount(){
         var course = ['MATH',241];
@@ -37,7 +37,9 @@ class App extends Component {
 
     search(e){
         if(e.key == 'Enter'){
-            console.log("shabi DouM")
+            this.setState({
+                query: document.getElementById('inputSearch').value
+            });
         }
     }
 
