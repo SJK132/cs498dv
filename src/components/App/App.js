@@ -78,7 +78,7 @@ class App extends Component {
                                 <div className="widget-head">
                                     <div className="row">
                                         <div className="title" style={{textAlign: 'left'}}>Put Chart2 Name Here</div>
-                                        <div className="text" style={{textAlign: 'right',  marginLeft: 'auto'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
+                                        <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">

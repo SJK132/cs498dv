@@ -23,7 +23,7 @@ export default class MultiSelectSimple extends Component {
 
     render() {
         return(
-            <div className="form-group row pt-1" style={{padding:0,marginBottom:'-10px'}}>
+            <div className="form-group row pt-1" style={{padding:0,marginBottom:'-10px',paddingRight:'45px'}}>
                 <label className="col-12 col-sm-3 col-form-label text-sm-right">
                     {this.props.disc}
                 </label>
