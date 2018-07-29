@@ -52,7 +52,8 @@ function appendTerm(A , B){
 
 
 
-export function processGPA(input,type,val){
+export function processGPA(_input,type,val){
+        const input = JSON.parse(JSON.stringify(_input));
         var output = [];
         if (type === 'semester'){
             output = input.reduce( ( out, i ) => {

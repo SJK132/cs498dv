@@ -12,7 +12,7 @@ class App extends Component {
         super(props);
         this.search = this.search.bind(this);
         this.changedMulti = this.changedMulti.bind(this);
-        this.state = {'data':[], d:[],d1:[],prompt: "Enter a course number: "};
+        this.state = {'data':[], d:[],d1:[],ori:[],prompt: "Enter a course number: "};
     }
     changedMulti(e){
         var d1 = processGPA(this.state.data,'semester', e);
@@ -23,6 +23,7 @@ class App extends Component {
         var data2 = data1.map(d => {
             return d.yearterm;
         });
+        console.log(this.state.data);
         data = data.map( d => {
             if (data2.includes(d.yearterm)){
                 d['new'] = data1[data2.indexOf(d.yearterm)];
@@ -64,6 +65,7 @@ class App extends Component {
                 .then(res => {
                     this.setState({'data':res})
                     this.setState({'prompt': "Successfully fetched data. The results are shown in the Charts below."});
+                    this.changedMulti(res[0].instructor);
                 })
                 .catch(err => console.log(err));
         }
