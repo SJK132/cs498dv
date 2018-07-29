@@ -59,16 +59,13 @@ class App extends Component {
                             <span className="input-group-btn"></span>
                         </div>
                     </div>
-                    <p className="App-intro">
-                        To get started, edit <code>src/App.js</code> and save to reload.
-                    </p>
                     <div className="row">
                         <div className="col-12 col-lg-6">
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="row">
                                         <div className="title" style={{textAlign: 'left', marginRight: 'auto'}}>Put Chart1 Name Here</div>
-                                        <MultiSelectSimple disc="Professor" list={data.map(d=>d.instructor)}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
+                                        <MultiSelectSimple list={data.map(d=>d.instructor)}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">

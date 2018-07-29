@@ -23,13 +23,13 @@ export default class MultiSelectSimple extends Component {
 
     render() {
         return(
-            <div className="form-group row pt-1">
+            <div className="form-group row pt-1" style={{padding:0,marginBottom:'-10px'}}>
                 <label className="col-12 col-sm-3 col-form-label text-sm-right">
                     {this.props.disc}
                 </label>
                 <div className="col-12 col-sm-8 col-lg-6">
                     <select value={this.state.value}
-                        style={{"height":"3rem"}}
+                        style={{"height":"23px","fontSize":"12px","padding":"0",'width':'160px'}}
                         className={"form-control " +this.props.invalid}
                         onChange={this.onChangeHandler}
                         disabled={this.props.list.length === 0}>
