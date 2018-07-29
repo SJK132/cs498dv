@@ -6,7 +6,6 @@ import { Threshold } from '@vx/threshold';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { GridRows, GridColumns } from '@vx/grid';
-import { cityTemperature as data1 } from '@vx/mock-data';
 import { timeFormat, timeParse } from 'd3-time-format';
 import { transformYearTerm , sortYearTerm , calcGPA } from './lib';
 
@@ -17,9 +16,9 @@ const ny = d => {
     return calcGPA(d);
 }
 const sf = d => {
+    return 0;
     if ( 'new' in d){
-        var out = calcGPA(d.new);
-        return out;
+        return calcGPA(d.new);
     }else
     return calcGPA(d);
 }
@@ -27,24 +26,10 @@ const sf = d => {
 export default class Thresholds extends React.Component {
     render() {
         const { width, height, margin, events } = this.props;
-        var data = this.props.data.sort( sortYearTerm );
-        var data1 = this.props.data1;
-        console.log(data1);
-        var data2 = data1.map(d => {
-            return d.yearterm;
-        });
-        data = data.map( d => {
-            if (data2.includes(d.yearterm)){
-                d['new'] = data1[data2.indexOf(d.yearterm)];
-                return d;
-            }
-            return d;
-        });
-        console.log(data);
-        const date = d => {
+        var data = this.props.data;
+        var date = d => {
             return parseDate(transformYearTerm(d.yearterm));
         };
-        if (width < 10 ) return null;
 
         // bounds
         const xMax = width - margin.left - margin.right;

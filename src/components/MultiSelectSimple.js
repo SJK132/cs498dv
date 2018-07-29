@@ -17,7 +17,7 @@ export default class MultiSelectSimple extends Component {
     }
 
     onChangeHandler(event){
-        this.props.changedMulti(this.props.disc , event.target.value);
+        this.props.changedMulti(event.target.value);
         this.setState({value:event.target.value});
     }
 
@@ -42,7 +42,7 @@ export default class MultiSelectSimple extends Component {
                         {
                             this.props.list.map( (val,i) => {
                                 return (
-                                    <option key={i} value={i}>{val}</option>
+                                    <option key={i} value={val}>{val}</option>
                                 )
                             })
 

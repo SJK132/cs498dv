@@ -53,14 +53,13 @@ function appendTerm(A , B){
 
 
 export function processGPA(input,type,val){
-    console.log(input);
         var output = [];
         if (type === 'semester'){
             output = input.reduce( ( out, i ) => {
                 const l = out;
                 var term = l.filter( yt => yt.yearterm === i.yearterm );
 
-                if (val == null || i.instructor ==="Tolman, Susan"){
+                if (val == null || i.instructor ===val){
                     if (term.length === 0) {
                         out.push(i);
                     }

@@ -5,14 +5,36 @@ import './App.css';
 import Pie from '../Pie';
 import Threshold from '../Threshold';
 import { processGPA } from '../lib';
+import { transformYearTerm , sortYearTerm , calcGPA } from '../lib';
 
 class App extends Component {
     constructor(props){
         super(props);
         this.search = this.search.bind(this);
-        this.state = {'data':[], query: ""};
+        this.changedMulti = this.changedMulti.bind(this);
+        this.state = {'data':[], d:[],d1:[]};
     }
+    changedMulti(e){
+        var d1 = processGPA(this.state.data,'semester', e);
+        this.setState({"d1":d1,d:[]});
 
+        var data = processGPA(this.state.data,'semester', null).sort( sortYearTerm );
+        var data1 = d1;
+        var data2 = data1.map(d => {
+            return d.yearterm;
+        });
+        data = data.map( d => {
+            if (data2.includes(d.yearterm)){
+                d['new'] = data1[data2.indexOf(d.yearterm)];
+                return d;
+            }
+            return d;
+        });
+
+        this.setState({d:data});
+
+
+    }
     search(e){
         if(e.key == 'Enter'){
             var query = document.getElementById('inputSearch').value;
@@ -35,14 +57,12 @@ class App extends Component {
                     }
                     return res.json();
                 })
-                .then(res => this.setState({'data':res}))
+                .then(res => this.setState({data:res}))
                 .catch(err => console.log(err));
         }
     }
 
     render() {
-        var data =processGPA(this.state.data,'semester', null);
-        var data1 =processGPA(this.state.data,'semester', 1);
         return (
             <div className="main-content container-fluid" style={{width:'1360px'}}>
                 <div className="App">
@@ -64,7 +84,7 @@ class App extends Component {
                                 <div className="widget-head">
                                     <div className="row">
                                         <div className="title" style={{textAlign: 'left', marginRight: 'auto', paddingLeft:'20px'}}>Put Chart1 Name Here</div>
-                                        <MultiSelectSimple list={data.map(d=>d.instructor)}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
+                                        <MultiSelectSimple changedMulti={this.changedMulti} list={[...new Set(this.state.data.map(d=>d.instructor))]}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">
@@ -85,11 +105,11 @@ class App extends Component {
                                         <div className="widget-head">
                                             <div className="row">
                                                 <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>Put Chart2 Name Here</div>
-                                                <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
+                                                <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+this.state.d1.map(d=>d.yearterm + " ")}</div>
                                             </div>
                                         </div>
                                         <div className="widget-chart-container">
-                                            <Threshold height={400} width={600} data={data} data1={data1} margin={{'top':25,'bottom':40,'left':40,'right':15}}/>
+                                            <Threshold height={400} width={600} margin={{'top':25,'bottom':40,'left':40,'right':15}} data={this.state.d} />
                                         </div>
                                     </div>
                                 </div>
