@@ -11,35 +11,34 @@ class App extends Component {
         super(props);
         this.state = {'data':[], query: ""};
     }
-    componentDidMount(){
-        var course = ['MATH',241];
-        fetch('https://0-web-api.course-ly.com/api/'+'getGPA',{
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json',
-                'Requested-With': 'Course-ly-web'
-            },
-            body: JSON.stringify({
-                dept: course[0],
-                num: course[1]
-            })
-        })
-            .then(res => {
-                var contentType = res.headers.get("content-type");
-                if (res.status !== 200 || !contentType || !contentType.includes("application/json")) {
-                    throw new TypeError("failed to get data.");
-                }
-                return res.json();
-            })
-            .then(res => this.setState({'data':res}))
-            .catch(err => console.log(err));
-    }
 
     search(e){
         if(e.key == 'Enter'){
-            this.setState({
-                query: document.getElementById('inputSearch').value
-            });
+            var query = document.getElementById('inputSearch').value;
+            console.log(query);
+            var course = query.match(/([A-Za-z]+)([0-9]+)/);
+            console.log(course[1]);
+            console.log(course[2]);
+            fetch('https://0-web-api.course-ly.com/api/'+'getGPA',{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Requested-With': 'Course-ly-web'
+                },
+                body: JSON.stringify({
+                    dept: course[1],
+                    num: course[2]
+                })
+            })
+                .then(res => {
+                    var contentType = res.headers.get("content-type");
+                    if (res.status !== 200 || !contentType || !contentType.includes("application/json")) {
+                        throw new TypeError("failed to get data.");
+                    }
+                    return res.json();
+                })
+                .then(res => this.setState({'data':res}))
+                .catch(err => console.log(err));
         }
     }
 
