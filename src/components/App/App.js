@@ -43,6 +43,7 @@ class App extends Component {
 
     render() {
         var data =processGPA(this.state.data,'semester', null);
+        var data_dump = [1,2,3,4,5];
         var data1 =processGPA(this.state.data,'semester', 1);
         return (
             <div className="main-content container-fluid" style={{width:'1360px'}}>
@@ -66,8 +67,8 @@ class App extends Component {
                         <div className="col-12 col-lg-6">
                             <div className="widget widget-tile">
                                 <div className="widget-head">
-                                    <div className="title">Put Chart1 Name Here</div>
-                                    <MultiSelectSimple disc="Professor" list={data}></MultiSelectSimple>
+                                        <div className="title" style={{textAlign: 'left'}}>Put Chart1 Name Here</div>
+                                        <MultiSelectSimple disc="Professor" list={data_dump}  style={{textAlign: 'right'}}></MultiSelectSimple>
                                 </div>
                                 <div className="widget-chart-container">
                                     <Pie />
@@ -77,7 +78,10 @@ class App extends Component {
                         <div className="col-12 col-lg-6">
                             <div className="widget widget-tile">
                                 <div className="widget-head">
-                                    <div className="title">Put Chart2 Name Here</div>
+                                    <div className="row">
+                                        <div className="title" style={{textAlign: 'left', flexDirection: "row"}}>Put Chart2 Name Here</div>
+                                        <div className="title" style={{textAlign: 'right', flexDirection: "row"}}>{data_dump}</div>
+                                    </div>
                                 </div>
                                 <div className="widget-chart-container">
                                     <Threshold height={400} width={600} data={data} data1={data1} margin={{'top':20,'bottom':40,'left':40,'right':15}}/>
