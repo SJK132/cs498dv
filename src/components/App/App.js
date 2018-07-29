@@ -51,8 +51,9 @@ class App extends Component {
             out[3].v += i.d;
             out[3].v += i.dplus;
             out[3].v += i.dminus;
+            out[4].v += i.f;
             return out;
-        }, [{'n':'A','v':0},{'n':'B','v':0},{'n':'C','v':0},{'n':'D','v':0}]);
+        }, [{'n':'A','v':0},{'n':'B','v':0},{'n':'C','v':0},{'n':'D','v':0},{'n':'F','v':0}]);
 
         this.setState({d:data,d2:data3,d3:reduceGPA});
 
