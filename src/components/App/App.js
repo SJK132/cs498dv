@@ -152,17 +152,22 @@ class App extends Component {
                             <div className="row tab-content" style={{margin:0}}>
                                 <div className='tab-pane active'>
                                     <h3>About this Visualization</h3>
-                                    <p> This data Visualization uses Drill Down approach to display the difference in GPA at UIUC between professors across the most recent seven semesters (Fall 2014 ~ Fall 2017).
-                                        The source of the data is from <a href={"baidu.com"}>Professor Wade Fagen's Github page.</a>
-                                        The Drill-Down Story visualization structure allows users to choose a detail instance among all instances provided in the main theme to reveal additional information.
-                                        This approach is more reader-driven comparing to the other two structure, Martini Glass and Interactive Slide-show, yet the Drill-Down still
-                                        requires lots of author pre-determined possible paths for better user interaction, such as what candidate elements to include, and what details to include for each elements.
-                                        The search bar plays a significant role in this visualization as it allows users to narrow the data down into specific courses. The search bar first triggers the contents
-                                        in the pie chart which shows a default professor's statistics. Among all the professors who taught that course in the past, users can further switch the dropdown button in order
-                                        to check different professor's statistics, which leads to another trigger on the line chart.
+                                    <p> This data Visualization uses <strong>Drill Down </strong>approach to display the difference in GPA at UIUC between professors
+                                        across the most recent seven semesters (Fall 2014 ~ Fall 2017). Since each class have many information to display,
+                                        the best way to lead the reader in this case is Drill Down. The Drill-Down Story visualization structure allows users
+                                        to choose a detail instance among all instances provided in the main theme to reveal additional information.
+                                        This approach is more reader-driven comparing to the other two structure, Martini Glass and Interactive Slide-show,
+                                        yet the Drill-Down still equires lots of author pre-determined possible paths for better user interaction,
+                                        such as what candidate elements to include, and what details to include for each elements.
+                                        This project relies heavily on data processing and trigger design. The search bar plays a significant role in this
+                                        visualization as it allows users to narrow the data down into specific courses. The search bar first triggers the contents
+                                        in the pie chart which shows a default professor's statistics. Among all the professors who taught that course in the past,
+                                        users can further switch the dropdown button in order to check different professor's statistics,
+                                        which leads to another trigger on the line chart.
                                         </p>
                                     <p>
-                                        Since each class have many information to display, the best way to lead the reader in this case is Drill Down. This project is heavy on data processing and trigger design. The out come is a
+                                    <h4>Data Source</h4>
+                                        <a href="https://github.com/wadefagen/datasets/tree/master/gpa">https://github.com/wadefagen/datasets/tree/master/gpa</a>
                                     </p>
                                 </div>
                             </div>
@@ -170,16 +175,20 @@ class App extends Component {
                             <div className="col-12 col-lg-6">
                             <div className="row tab-content" style={{marginLeft:'auto'}}>
                                 <div className='tab-pane active'>
-                                    <h4>About this Visualization</h4>
+                                    <h4>Scences</h4>
                                     <p> asdf</p>
+                                    <h4>Annotations</h4>
+                                    <p>daef</p>
                                 </div>
                             </div>
                             </div>
                             <div className="col-12 col-lg-6">
                             <div className="row tab-content" style={{marginRight:'auto'}}>
                                 <div className='tab-pane active'>
-                                    <h4>About this Visualization</h4>
+                                    <h4>Parameters</h4>
                                     <p> asdf</p>
+                                    <h4>Trigger</h4>
+                                    <p>sdaw</p>
                                 </div>
                             </div>
                         </div>
