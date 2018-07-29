@@ -26,18 +26,18 @@ function Label({ x, y, children }) {
 }
 
 export default ({
-  width=675,
+  width=600,
   height=400,
   events = false,
   margin = {
-    top: 40,
+    top: 10,
     left: 20,
     right: 20,
-    bottom: 40,
+    bottom: 10,
   }
 }) => {
   if (width < 10) return null;
-  const radius = Math.min(width, height) / 2;
+  const radius = Math.min(width, height) / 1.7;
   return (
     <svg width={width} height={height}>
       <GradientTealBlue id="TealBlue" />
