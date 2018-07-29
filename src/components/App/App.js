@@ -115,7 +115,7 @@ class App extends Component {
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="row">
-                                        <div className="title" style={{textAlign: 'left', marginRight: 'auto', paddingLeft:'20px'}}>Put Chart1 Name Here</div>
+                                        <div className="title" style={{textAlign: 'left', marginRight: 'auto', paddingLeft:'20px'}}>Popular Prof. and Grade</div>
                                         <MultiSelectSimple changedMulti={this.changedMulti} list={[...new Set(this.state.data.map(d=>d.instructor))]}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
                                     </div>
                                 </div>
@@ -132,56 +132,59 @@ class App extends Component {
                                         data={this.state.d2}
                                         gpad={this.state.d3}
                                     />
-                                        </div>
-                                    </div>
                                 </div>
-                                <div className="col-12 col-lg-6">
-                                    <div className="widget widget-tile">
-                                        <div className="widget-head">
-                                            <div className="row">
-                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>Put Chart2 Name Here</div>
-                                                <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+this.state.d1.map(d=>d.yearterm + " ")}</div>
-                                            </div>
-                                        </div>
-                                        <div className="widget-chart-container">
-                                            <Threshold height={400} width={600} margin={{'top':25,'bottom':40,'left':40,'right':15}} data={this.state.d} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-lg-12">
-                                    <div className="widget widget-tile">
-                                        <div className="widget-head">
-                                            <div className="row">
-                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>Siezless</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-lg-6">
-                                    <div className="widget widget-tile">
-                                        <div className="widget-head">
-                                            <div className="row">
-                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>ShaBi</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-lg-6">
-                                    <div className="widget widget-tile">
-                                        <div className="widget-head">
-                                            <div className="row">
-                                                <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>DouM</div>                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
-
                         </div>
-            
-                );
-            }
-            }
+                        <div className="col-12 col-lg-6">
+                            <div className="widget widget-tile">
+                                <div className="widget-head">
+                                    <div className="row">
+                                        <div className="title" style={{textAlign: 'left', paddingLeft:'20px'}}>Prof. GPA difference</div>
+                                        <div className="text" style={{textAlign: 'right',  marginLeft: 'auto', paddingRight:'30px',paddingTop:'5px'}}>{"Terms: "+this.state.d1.map(d=>d.yearterm + " ")}</div>
+                                    </div>
+                                </div>
+                                <div className="widget-chart-container">
+                                    <Threshold height={400} width={600} margin={{'top':25,'bottom':40,'left':40,'right':15}} data={this.state.d} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-12">
+                            <div className="row tab-content" style={{margin:0}}>
+                                <div className='tab-pane active'>
+                                    <h3>About this Visualization</h3>
+                                    <p> This data Visualization uses Drill Down approch to display the difference in GPA between professors across many semesters.
+                                        The source of the data is from <a href={"baidu.com"} >Professor Wade Fagen's Github page.</a>
+                                    </p>
+                                    <p>
+                                        Since each class have many information to display, the best way to lead the reader in this case is Drill Down. This project is heavy on data processing and trigger design. The out come is a
+                                    </p>
+                                </div>
+                            </div>
+                            </div>
+                            <div className="col-12 col-lg-6">
+                            <div className="row tab-content" style={{marginLeft:'auto'}}>
+                                <div className='tab-pane active'>
+                                    <h4>About this Visualization</h4>
+                                    <p> asdf</p>
+                                </div>
+                            </div>
+                            </div>
+                            <div className="col-12 col-lg-6">
+                            <div className="row tab-content" style={{marginRight:'auto'}}>
+                                <div className='tab-pane active'>
+                                    <h4>About this Visualization</h4>
+                                    <p> asdf</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            export default App;
+                </div>
+
+            </div>
+
+        );
+    }
+}
+
+export default App;
