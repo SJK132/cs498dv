@@ -67,7 +67,7 @@ class App extends Component {
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="row">
-                                        <div className="title" style={{textAlign: 'left'}}>Put Chart1 Name Here</div>
+                                        <div className="title" style={{textAlign: 'left', marginRight: 'auto'}}>Put Chart1 Name Here</div>
                                         <MultiSelectSimple disc="Professor" list={data.map(d=>d.instructor)}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@ class App extends Component {
                                 <div className="widget-head">
                                     <div className="row">
                                         <div className="title" style={{textAlign: 'left'}}>Put Chart2 Name Here</div>
-                                        <div className="title" style={{textAlign: 'right',  marginLeft: 'auto'}}>{data1.map(d=>d.yearterm)}</div>
+                                        <div className="title" style={{textAlign: 'right',  marginLeft: 'auto'}}>{"Terms: "+data1.map(d=>d.yearterm + " ")}</div>
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">
