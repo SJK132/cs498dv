@@ -82,7 +82,7 @@ class App extends Component {
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">
-                                    <Threshold height={400} width={600} data={data} data1={data1} margin={{'top':20,'bottom':40,'left':40,'right':15}}/>
+                                    <Threshold height={400} width={600} data={data} data1={data1} margin={{'top':25,'bottom':40,'left':40,'right':15}}/>
                                 </div>
                             </div>
                         </div>

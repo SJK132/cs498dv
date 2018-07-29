@@ -58,8 +58,8 @@ export default class Thresholds extends React.Component {
         const yScale = scaleLinear({
             range: [yMax, 0],
             domain: [
-                Math.min(...data.map(d => Math.min(ny(d), sf(d)))),
-                Math.max(...data.map(d => Math.max(ny(d), sf(d))))
+                Math.min(Math.min(...data.map(d => Math.min(ny(d), sf(d)))),1),
+                4
             ],
             nice: true
         });
@@ -74,8 +74,8 @@ export default class Thresholds extends React.Component {
                         <line x1={xMax} x2={xMax} y1={0} y2={yMax} stroke="#e0e0e0" />
                         <AxisBottom top={yMax} scale={xScale} numTicks={width > 520 ? 10 : 5} />
                         <AxisLeft scale={yScale} />
-                        <text x="-70" y="15" transform="rotate(-90)" fontSize={10}>
-                            Temperature (°F)
+                        <text x="-25" y="-10" fontSize={10}>
+                            GPA
                         </text>
                         <Threshold
                             data={data}
