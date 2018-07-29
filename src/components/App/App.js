@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
+import MultiSelectSimple from '../MultiSelectSimple' ;
 import './App.css';
 import Pie from '../Pie';
 import Threshold from '../Threshold';
@@ -34,6 +35,11 @@ class App extends Component {
             .catch(err => console.log(err));
     }
 
+    search(e){
+        if(e.key == 'Enter'){
+            console.log("shabi DouM")
+        }
+    }
 
     render() {
         var data =processGPA(this.state.data,'semester', null);
@@ -49,7 +55,7 @@ class App extends Component {
                         <div className="input-group input-search">
                             <input id="inputSearch" type="text"
                                 placeholder="Please enter a course to start searching <3"
-                                className="form-control"/>
+                                className="form-control" onKeyPress={this.search}/>
                             <span className="input-group-btn"></span>
                         </div>
                     </div>
@@ -61,6 +67,7 @@ class App extends Component {
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="title">Put Chart1 Name Here</div>
+                                    <MultiSelectSimple disc="Professor" list={data}></MultiSelectSimple>
                                 </div>
                                 <div className="widget-chart-container">
                                     <Pie />
