@@ -9,16 +9,14 @@ import { processGPA } from '../lib';
 class App extends Component {
     constructor(props){
         super(props);
+        this.search = this.search.bind(this);
         this.state = {'data':[], query: ""};
     }
 
     search(e){
         if(e.key == 'Enter'){
             var query = document.getElementById('inputSearch').value;
-            console.log(query);
             var course = query.match(/([A-Za-z]+)([0-9]+)/);
-            console.log(course[1]);
-            console.log(course[2]);
             fetch('https://0-web-api.course-ly.com/api/'+'getGPA',{
                 method: 'POST',
                 headers:{
