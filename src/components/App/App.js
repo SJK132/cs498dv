@@ -5,25 +5,24 @@ import './App.css';
 import Pie from '../Pie';
 import Threshold from '../Threshold';
 import { processGPA } from '../lib';
-import { transformYearTerm , sortYearTerm , calcGPA } from '../lib';
+import { transformYearTerm , sortYearTerm ,sortByProf , calcGPA } from '../lib';
 
 class App extends Component {
     constructor(props){
         super(props);
         this.search = this.search.bind(this);
         this.changedMulti = this.changedMulti.bind(this);
-        this.state = {'data':[], d:[],d1:[],ori:[],prompt: "Enter a course number: "};
+        this.state = {'data':[], d:[],d1:[],d2:[],d3:[],prompt: "Enter a course number: "};
     }
     changedMulti(e){
         var d1 = processGPA(this.state.data,'semester', e);
-        this.setState({"d1":d1,d:[]});
+        this.setState({"d1":d1});
 
         var data = processGPA(this.state.data,'semester', null).sort( sortYearTerm );
         var data1 = d1;
         var data2 = data1.map(d => {
             return d.yearterm;
         });
-        console.log(this.state.data);
         data = data.map( d => {
             if (data2.includes(d.yearterm)){
                 d['new'] = data1[data2.indexOf(d.yearterm)];
@@ -32,7 +31,30 @@ class App extends Component {
             return d;
         });
 
-        this.setState({d:data});
+
+        var data3 = processGPA( this.state.data,'prof',null).sort( sortByProf );
+
+        data3 = data3.slice(0, Math.min(5,data3.length));
+        data3.push({instructor:'etc..',b:data3[0].b/8});
+        console.log(data3);
+
+        var reduceGPA = d1.reduce( (out, i) =>{
+            out[0].v += i.a;
+            out[0].v += i.aplus;
+            out[0].v += i.aminus;
+            out[1].v += i.b;
+            out[1].v += i.bplus;
+            out[1].v += i.bminus;
+            out[2].v += i.c;
+            out[2].v += i.cplus;
+            out[2].v += i.cminus;
+            out[3].v += i.d;
+            out[3].v += i.dplus;
+            out[3].v += i.dminus;
+            return out;
+        }, [{'n':'A','v':0},{'n':'B','v':0},{'n':'C','v':0},{'n':'D','v':0}]);
+
+        this.setState({d:data,d2:data3,d3:reduceGPA});
 
 
     }
@@ -105,7 +127,10 @@ class App extends Component {
                                             left: 20,
                                             right: 20,
                                             bottom: 10,
-                                        }} />
+                                        }}
+                                        data={this.state.d2}
+                                        gpad={this.state.d3}
+                                    />
                                         </div>
                                     </div>
                                 </div>

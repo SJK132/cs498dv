@@ -18,6 +18,17 @@ export function sortYearTerm( a, b ){
         return 0;
     }
 
+export function sortByProf( a, b ){
+        let ta,tb;
+        ta = a.b;
+        tb = b.b;
+        if (ta<tb)
+            return 1;
+        if (tb<ta)
+            return -1;
+        return 0;
+    }
+
 export function calcGPA ( data ) {
     let quiltyPoint = data.a * 4 + data.aminus * 3.67 + data.bplus * 3.33
         + data.b * 3 + data.bminus * 2.67 + data.cplus *2.33
@@ -84,7 +95,7 @@ export function processGPA(_input,type,val){
                     else{
                         out = out.filter( yt => yt.instructor !== i.instructor );
                         var data = prof[0];
-                        out.push(this.appendTerm(data,i));
+                        out.push(appendTerm(data,i));
                     }
                 }
                 return out;

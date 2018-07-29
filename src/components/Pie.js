@@ -28,6 +28,7 @@ function Label({ x, y, children }) {
 export default class Piec extends React.Component{
 
     render(){
+        console.log(this.props.data);
         const { width, height, margin } = this.props;
         if (width < 10) return null;
         const radius = Math.min(width, height) / 1.7;
@@ -44,8 +45,8 @@ export default class Piec extends React.Component{
                 />
                 <Group top={height / 2 - margin.top} left={width / 2}>
                     <Pie
-                        data={browsers}
-                        pieValue={d => d.usage}
+                        data={this.props.data}
+                        pieValue={d => d.b}
                         outerRadius={radius - 80}
                         innerRadius={radius - 120}
                         fill="white"
@@ -56,18 +57,18 @@ export default class Piec extends React.Component{
                             const [x, y] = centroid;
                             const { startAngle, endAngle } = arc;
                             if (endAngle - startAngle < .1) return null;
-                            return <Label x={x} y={y}>{arc.data.label}</Label>;
+                            return <Label x={x} y={y}>{arc.data.instructor}</Label>;
                         }}
                     />
                     <Pie
-                        data={letters}
-                        pieValue={d => d.frequency}
+                        data={this.props.gpad}
+                        pieValue={d => d.v}
                         outerRadius={radius - 135}
                         fill="black"
                         fillOpacity={d => 1 / (d.index + 2) }
                         centroid={(centroid, arc) => {
                             const [x, y] = centroid;
-                            return <Label x={x} y={y}>{arc.data.letter}</Label>;
+                            return <Label x={x} y={y}>{arc.data.n}</Label>;
                         }}
                     />
                 </Group>
