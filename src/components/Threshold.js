@@ -16,7 +16,6 @@ const ny = d => {
     return calcGPA(d);
 }
 const sf = d => {
-    return 0;
     if ( 'new' in d){
         return calcGPA(d.new);
     }else
