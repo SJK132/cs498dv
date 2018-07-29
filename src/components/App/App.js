@@ -67,8 +67,10 @@ class App extends Component {
                         <div className="col-12 col-lg-6">
                             <div className="widget widget-tile">
                                 <div className="widget-head">
+                                    <div className="row">
                                         <div className="title" style={{textAlign: 'left'}}>Put Chart1 Name Here</div>
-                                        <MultiSelectSimple disc="Professor" list={data_dump}  style={{textAlign: 'right'}}></MultiSelectSimple>
+                                        <MultiSelectSimple disc="Professor" list={data_dump}  style={{textAlign: 'right', marginLeft: 'auto'}}></MultiSelectSimple>
+                                    </div>
                                 </div>
                                 <div className="widget-chart-container">
                                     <Pie />
@@ -79,8 +81,8 @@ class App extends Component {
                             <div className="widget widget-tile">
                                 <div className="widget-head">
                                     <div className="row">
-                                        <div className="title" style={{textAlign: 'left', flexDirection: "row"}}>Put Chart2 Name Here</div>
-                                        <div className="title" style={{textAlign: 'right', flexDirection: "row"}}>{data_dump}</div>
+                                        <div className="title" style={{textAlign: 'left'}}>Put Chart2 Name Here</div>
+                                        <div className="title" style={{textAlign: 'right',  marginLeft: 'auto'}}>{data_dump}</div>
                                     </div>
                                 </div>
                                 <div className="widget-chart-container">
